@@ -1,5 +1,7 @@
 import 'package:bus_schedules_np/constans.dart';
+import 'package:bus_schedules_np/screens/bindings/appBind.dart';
 import 'package:bus_schedules_np/screens/home_screen/home_screen.dart';
+import 'package:bus_schedules_np/screens/schedule_screen/schedule_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,7 +20,8 @@ class AppInit extends StatelessWidget {
         canvasColor: Colors.transparent,
       ),
       getPages: [
-        GetPage(name: "/home", page: () => HomeScreen()),
+        GetPage(name: "/home", page: () => HomeScreen(), binding: AppBinds()),
+        GetPage(name: "/schedule", page: () => ScheduleScreen(), binding: AppBinds()),
       ],
       initialRoute: "/home",
     );

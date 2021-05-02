@@ -1,13 +1,16 @@
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  var selectTabNumber = 1;
+  var tripLine = 0;
+  var titleLine = "";
 
-  changeTab() {
-    if(selectTabNumber == 1) {
-      selectTabNumber--;
-    } else {
-      selectTabNumber++;
-    }
+  initTrip(int initTripLine, String initTitleLine) {
+    tripLine = initTripLine;
+    titleLine = initTitleLine;
+  }
+
+  resetTrip() {
+    tripLine = 0;
+    titleLine = "";
   }
 }

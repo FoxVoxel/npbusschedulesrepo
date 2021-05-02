@@ -1,5 +1,7 @@
 import 'package:bus_schedules_np/models/bus_model.dart';
+import 'package:bus_schedules_np/screens/home_screen/controllers/home_controllers.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../constans.dart';
 
@@ -8,12 +10,12 @@ class BusItemButton extends StatelessWidget {
   const BusItemButton({
     Key key, this.item,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    var initTripFromHomeController = Get.put(HomeController());
     return InkWell(
       onTap: () {
-        _buildShowModalBottomSheet(context, item);
+        _buildShowModalBottomSheet(context, item, initTripFromHomeController);
       },
       child: Container(
         margin: EdgeInsets.all(15),
@@ -34,7 +36,7 @@ class BusItemButton extends StatelessWidget {
     );
   }
 
-  Future _buildShowModalBottomSheet(BuildContext context, int item) {
+  Future _buildShowModalBottomSheet(BuildContext context, int item, HomeController initTrip) {
     final busItem = schedules[item];
     return showModalBottomSheet(
         context: context,
@@ -47,6 +49,7 @@ class BusItemButton extends StatelessWidget {
             ),
           ),
           child: Container(
+            height: 150,
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: Theme.of(context).canvasColor,
@@ -54,6 +57,10 @@ class BusItemButton extends StatelessWidget {
             child: ListView.builder(
               itemCount: busItem.trip.length,
               itemBuilder: (ctx, inx) => ListTile(
+                onTap: () {
+                  initTrip.initTrip(inx, busItem.trip[inx]);
+                  Get.toNamed("/schedule");
+                },
                 title: Text(
                   busItem.trip[inx],
                   style: TextStyle(
