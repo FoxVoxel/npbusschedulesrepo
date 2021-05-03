@@ -13,11 +13,10 @@ class AppInit extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Расписание Новополоцких автобусов",
+      title: "Autobasico",
       theme: ThemeData(
-        backgroundColor: kSwitchColor,
-        textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
-        canvasColor: Colors.transparent,
+        backgroundColor: R().switchColor,
+        textTheme: GoogleFonts.latoTextTheme(Theme.of(context).textTheme),
       ),
       getPages: [
         GetPage(name: "/home", page: () => HomeScreen(), binding: AppBinds()),
